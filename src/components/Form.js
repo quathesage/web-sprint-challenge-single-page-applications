@@ -21,8 +21,10 @@ const [disabled, setDisabled] = useState(true)
 
 const [submitOrder, setSubmitOrder] = useState(false)
 
-const onChange = (evt) => {
 
+const onChange = (evt) => {
+    const value = evt.target.type === 'checkbox' ? evt.target.checked : evt.target.value;
+    setPizza({ ...pizza, [name]: value})
 }
 
 const onSubmit = (evt) => {

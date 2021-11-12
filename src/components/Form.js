@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import formSchema from './FormSchema.js';
+import axios from 'axios';
 
 const initalValues = {
     name : '',
@@ -13,15 +14,17 @@ const initalValues = {
     specialText : ''
     }
 
+
 const Form = (props) => {
 
 const [pizza, setPizza] = useState(initalValues);
+const [users, setUsers] = useState([]);
+
 const {name, size, pepperoni, sausage, beef, canadianBacon, dicedTomatoes, onions, specialText} = pizza;
 
 const [disabled, setDisabled] = useState(true)
 
 const [submitOrder, setSubmitOrder] = useState(false)
-
 
 const onChange = (evt) => {
     const value = evt.target.type === 'checkbox' ? evt.target.checked : evt.target.value;
@@ -29,7 +32,14 @@ const onChange = (evt) => {
 }
 
 const onSubmit = (evt) => {
-    evt.preventDefault();
+ evt.preventDefault();
+    axios.post('https://reqres.in/api/orders', pizza)
+        .then(res => {
+            setUsers([res.data, ...users])
+        })
+        .catch(error => {
+            console.error(error)
+        })
     setSubmitOrder(true);
 }
 
@@ -41,7 +51,7 @@ useEffect(() => {
     return(
         <div>
             <h2>Build Your Own Pizza</h2>
-
+            {disabled && <p>name must be at least 2 characters</p>}
             <form id='pizza-form' onSubmit={onSubmit}>
                 <label>Order Name :
                     <input id='name-input'

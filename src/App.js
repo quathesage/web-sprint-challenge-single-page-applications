@@ -1,9 +1,9 @@
-import React from "react";
-import Nav from './components/Nav.js'
-
+import React, {useState} from "react";
+import Nav from './components/Nav.js';
 
 
 const App = () => {
+
   return (
     <>
       <Nav/>

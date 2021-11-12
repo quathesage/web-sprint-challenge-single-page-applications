@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import formSchema from './FormSchema.js';
 
 const initalValues = {
     name : '',
@@ -32,13 +33,18 @@ const onSubmit = (evt) => {
     setSubmitOrder(true);
 }
 
+useEffect(() => {
+    formSchema.isValid(pizza)
+    .then(valid => setDisabled(!valid))
+}, [pizza])
+
     return(
         <div>
             <h2>Build Your Own Pizza</h2>
 
-            <form id='buildPizza' onSubmit={onSubmit}>
+            <form id='pizza-form' onSubmit={onSubmit}>
                 <label>Order Name :
-                    <input
+                    <input id='name-input'
                         type='text'
                         name='name'
                         value={name}
@@ -46,7 +52,7 @@ const onSubmit = (evt) => {
                     />
                 </label>
                 <label>Choose a Size :
-                    <select id='pizza-size'
+                    <select id='size-dropdown'
                         name='size'
                         value={size}
                         onChange={onChange}
@@ -117,7 +123,7 @@ const onSubmit = (evt) => {
                     />
                 </label>
                 <label>Special Instructions
-                    <input
+                    <input id='special-text'
                         type='text'
                         name='specialText'
                         placeholder='Any special instructions?'

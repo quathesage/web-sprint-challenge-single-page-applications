@@ -3,8 +3,8 @@ import {Link} from 'react-router-dom';
 
 const Nav = () => {
     <div>
-        <Link>Home</Link>
-        <Link>Order</Link>
+        <Link id to='/'>Home</Link>
+        <Link id='order-pizza' to='/pizza'>Order</Link>
     </div>
 }
 
@@ -13,6 +13,8 @@ const Header = () => {
         <div>
             <h2>Lambda Eats</h2>
             <p>Best pizza in town</p>
+
+            <Nav />
         </div>
     )
 }

@@ -24,7 +24,7 @@ const [submitOrder, setSubmitOrder] = useState(false)
 
 const onChange = (evt) => {
     const value = evt.target.type === 'checkbox' ? evt.target.checked : evt.target.value;
-    setPizza({ ...pizza, [name]: value})
+    setPizza({ ...pizza, [evt.target.name]: value})
 }
 
 const onSubmit = (evt) => {
@@ -37,7 +37,7 @@ const onSubmit = (evt) => {
             <h2>Build Your Own Pizza</h2>
 
             <form id='buildPizza' onSubmit={onSubmit}>
-                <label>
+                <label>Order Name :
                     <input
                         type='text'
                         name='name'
@@ -128,7 +128,7 @@ const onSubmit = (evt) => {
                 <br/>
                 <button id= 'orderBtn' type='submit' disabled={disabled}>Add to Order</button>
             </form>
-            {/* {submitOrder} */}
+            {submitOrder}
         </div>
     )
 }

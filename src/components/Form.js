@@ -15,7 +15,7 @@ const initalValues = {
 const Form = (props) => {
 
 const [pizza, setPizza] = useState(initalValues);
-const {name, size, pepperoni, sausage, beef, canadianBacon, dicedTomatoes, onions, specialText} = props.values
+const {name, size, pepperoni, sausage, beef, canadianBacon, dicedTomatoes, onions, specialText} = pizza;
 
 const [disabled, setDisabled] = useState(true)
 
@@ -28,14 +28,15 @@ const onChange = (evt) => {
 }
 
 const onSubmit = (evt) => {
-
+    evt.preventDefault();
+    setSubmitOrder(true);
 }
 
     return(
         <div>
             <h2>Build Your Own Pizza</h2>
 
-            <form>
+            <form id='buildPizza' onSubmit={onSubmit}>
                 <label>
                     <input
                         type='text'
@@ -45,7 +46,7 @@ const onSubmit = (evt) => {
                     />
                 </label>
                 <label>Choose a Size :
-                    <select
+                    <select id='pizza-size'
                         name='size'
                         value={size}
                         onChange={onChange}
@@ -126,8 +127,10 @@ const onSubmit = (evt) => {
                 </label>
                 <br/>
                 <button id= 'orderBtn' type='submit' disabled={disabled}>Add to Order</button>
-
             </form>
+            {/* {submitOrder} */}
         </div>
     )
 }
+
+export default Form;

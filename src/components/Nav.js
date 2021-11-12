@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link, Switch, Route} from 'react-router-dom';
+import Form from './Form';
 import HomePage from './HomePage';
 
 const Nav = () => {
@@ -16,8 +17,8 @@ const Nav = () => {
         </div>
         
         <Switch>
-            <Route exact path='/' component={HomePage}></Route>
-            {/* <Route></Route> */}
+            <Route exact path='/' component={HomePage} />
+            <Route path= '/pizza' component={Form}/>
         </Switch>
     </>
     )
